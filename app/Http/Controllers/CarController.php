@@ -58,7 +58,7 @@ class CarController extends Controller
             'make' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'year' => 'required|integer',
-            'daily_price' => 'required|numeric',
+            'price_per_day' => 'required|numeric',
             'available' => 'required|boolean',
         ]);
 
