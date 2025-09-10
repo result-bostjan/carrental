@@ -4,20 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\CarController;
+use App\Http\Controllers\CarController;
 
 Route::get('/', [HomeController::class, 'index']);
 
 require __DIR__.'/auth.php';
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [HomeController::class, 'index'])
+     ->middleware(['auth', 'verified'])
+     ->name('dashboard');
 
 // Admin routes
-Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
-    Route::resource('cars', CarController::class)->names('admin.cars');
-});
+Route::middleware(['auth'])
+     ->prefix('admin')
+     ->group(function () {
+         Route::resource('cars', CarController::class)->names('admin.cars');
+     });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,6 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/bookings/create/{car}', [BookingController::class, 'create'])->name('bookings.create');
     Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store');
     Route::get('/bookings/my', [BookingController::class, 'myBookings'])->name('bookings.my');
+    Route::delete('bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
 });
 
 

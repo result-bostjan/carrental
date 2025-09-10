@@ -63,6 +63,3 @@ Route::middleware('auth')->group(function () {
     Route::get('bookings', [BookingController::class, 'myBookings']);
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::resource('cars', CarController::class);
-});

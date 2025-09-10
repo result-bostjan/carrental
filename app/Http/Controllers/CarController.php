@@ -29,16 +29,17 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         $request->validate([
             'make' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'year' => 'required|integer',
-            'daily_price' => 'required|numeric',
+            'price_per_day' => 'required|numeric',
             'available' => 'required|boolean',
         ]);
 
         Car::create($request->all());
-        return redirect()->route('cars.index')->with('success', 'Car added successfully.');
+        return redirect()->route('admin.cars.index')->with('success', 'Car added successfully.');
     }
 
     /**
@@ -46,6 +47,7 @@ class CarController extends Controller
      */
     public function edit(string $id)
     {
+        $car = Car::findOrFail($id); 
         return view('admin.cars.edit', compact('car'));
     }
 
@@ -61,9 +63,9 @@ class CarController extends Controller
             'price_per_day' => 'required|numeric',
             'available' => 'required|boolean',
         ]);
-
+        $car = Car::findOrFail($id); 
         $car->update($request->all());
-        return redirect()->route('cars.index')->with('success', 'Car updated successfully.');
+        return redirect()->route('admin.cars.index')->with('success', 'Car updated successfully.');
     }
 
     /**
@@ -72,6 +74,6 @@ class CarController extends Controller
     public function destroy(Car $car)
     {
         $car->delete();
-        return redirect()->route('cars.index')->with('success', 'Car deleted successfully.');
+        return redirect()->route('admin.cars.index')->with('success', 'Car deleted successfully.');
     }
 }

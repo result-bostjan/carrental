@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $cars = Car::all(); // pridobi vse avte iz baze
+        $cars = Car::where('available', 1)->get(); 
         return view('home', compact('cars'));
     }
 }

@@ -7,7 +7,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Make</th><th>Model</th><th>Year</th><th>Price</th><th></th>
+            <th>Make</th><th>Model</th><th>Year</th><th>Price</th><th>Available</th><th></th>
         </tr>
     </thead>
     <tbody>
@@ -17,6 +17,7 @@
                 <td>{{ $car->model }}</td>
                 <td>{{ $car->year }}</td>
                 <td>${{ $car->price_per_day }}</td>
+                <td>{{ $car->available ? 'YES' : 'NO' }}</td>
                 <td>
                     <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-sm btn-warning">Edit</a>
                     <form action="{{ route('admin.cars.destroy', $car) }}" method="POST" style="display:inline;">

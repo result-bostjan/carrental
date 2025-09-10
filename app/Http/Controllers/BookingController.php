@@ -10,8 +10,12 @@ use Carbon\Carbon;
 class BookingController extends Controller
 {
     public function index() {
-        $cars = Car::all();
-        return view('cars.index', compact('cars'));
+        $bookings = Booking::with('car') // eager load, da se ne dela N+1 query
+        ->where('user_id', auth()->id())
+        ->orderBy('start_date', 'asc')
+        ->get();
+
+        return view('bookings.index', compact('bookings'));
     }
     
     public function store(Request $request) {
@@ -94,12 +98,24 @@ class BookingController extends Controller
 
     public function myBookings() {
         $bookings = auth()->user()->bookings()->with('car')->get();
-        return view('bookings.my', compact('bookings'));
+        return view('bookings.my-bookings', compact('bookings'));
     }
 
     public function create(Car $car)
     {
         return view('bookings.create', compact('car'));
+    }
+
+    public function destroy(Booking $booking)
+    {
+        // Tukaj se preveri, da rezervacijo lahko briše le lastnik ali admin
+        if(auth()->id() !== $booking->user_id && !auth()->user()->is_admin) {
+            abort(403, 'Unauthorized');
+        }
+
+        $booking->delete();
+
+        return redirect()->back()->with('success', 'Booking canceled successfully!');
     }
 }
     

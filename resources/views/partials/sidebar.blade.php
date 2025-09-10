@@ -7,8 +7,21 @@
             @if(auth()->user()->is_admin)
                 <li><a href="{{ url('/admin/cars') }}" class="nav-link text-white">Manage Cars</a></li>
             @endif
+            {{-- 🔹 Logout link --}}
+            <li>
+                <a href="{{ url('/logout') }}" 
+                class="nav-link text-white"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </li>
         @endauth
         @guest
+        <li>&nbsp;</li>
+        <li>&nbsp;</li>
             <li><a href="{{ route('login') }}" class="nav-link text-white">Login</a></li>
             <li><a href="{{ route('register') }}" class="nav-link text-white">Register</a></li>
         @endguest
