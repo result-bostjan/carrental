@@ -9,7 +9,7 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">{{ $car->make }} {{ $car->model }}</h5>
-                    <p>{{ $car->year }} – ${{ $car->price_per_day }} / day</p>
+                    <p>{{ $car->year }} – ${{ $car->daily_price }} / day</p>
                     <a href="{{ route('bookings.create', $car->id) }}" class="btn btn-primary">Book Now</a>
                 </div>
             </div>

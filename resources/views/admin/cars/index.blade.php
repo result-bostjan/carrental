@@ -16,7 +16,7 @@
                 <td>{{ $car->make }}</td>
                 <td>{{ $car->model }}</td>
                 <td>{{ $car->year }}</td>
-                <td>${{ $car->price_per_day }}</td>
+                <td>${{ $car->daily_price }}</td>
                 <td>{{ $car->available ? 'YES' : 'NO' }}</td>
                 <td>
                     <a href="{{ route('admin.cars.edit', $car) }}" class="btn btn-sm btn-warning">Edit</a>

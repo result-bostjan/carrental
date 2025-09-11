@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('make');
             $table->string('model');
             $table->integer('year');
-            $table->decimal('price_per_day', 8, 2);
+            $table->decimal('daily_price', 8, 2);
             $table->boolean('available')->default(true);
             $table->timestamps();
         });

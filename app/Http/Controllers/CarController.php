@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class CarController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the cars.
      */
     public function index()
     {
@@ -17,7 +17,7 @@ class CarController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new cars.
      */
     public function create()
     {
@@ -25,16 +25,15 @@ class CarController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created car in storage.
      */
     public function store(Request $request)
     {
-        //dd($request);
         $request->validate([
             'make' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'year' => 'required|integer',
-            'price_per_day' => 'required|numeric',
+            'daily_price' => 'required|numeric',
             'available' => 'required|boolean',
         ]);
 
@@ -43,7 +42,7 @@ class CarController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified car.
      */
     public function edit(string $id)
     {
@@ -52,24 +51,26 @@ class CarController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified car in storage.
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'make' => 'required|string|max:255',
             'model' => 'required|string|max:255',
             'year' => 'required|integer',
-            'price_per_day' => 'required|numeric',
+            'daily_price' => 'required|numeric',
             'available' => 'required|boolean',
         ]);
+
         $car = Car::findOrFail($id); 
-        $car->update($request->all());
+        $car->update($validated);
+        
         return redirect()->route('admin.cars.index')->with('success', 'Car updated successfully.');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified cars from storage.
      */
     public function destroy(Car $car)
     {

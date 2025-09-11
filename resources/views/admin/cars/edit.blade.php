@@ -35,8 +35,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="price_per_day" class="form-label">Daily Price</label>
-            <input type="number" step="0.01" name="price_per_day" id="price_per_day" class="form-control" value="{{ old('price_per_day', $car->price_per_day) }}" required>
+            <label for="daily_price" class="form-label">Daily Price</label>
+            <input type="number" step="0.01" name="daily_price" id="daily_price" class="form-control" value="{{ old('daily_price', $car->daily_price) }}" required>
         </div>
 
         <div class="mb-3">

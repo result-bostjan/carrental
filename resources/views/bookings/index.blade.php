@@ -5,6 +5,9 @@
 @section('content')
 <a href="/" class="btn btn-success mb-3">Add Bookings</a>
 <a href="{{ route('bookings.my') }}" class="btn btn-success mb-3">Cancel Bookings</a>
+@if(session('success'))
+<div class="alert alert-success">{{ session('success') }}</div>
+@endif
 <table class="table table-bordered">
     <thead>
         <tr>

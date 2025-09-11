@@ -7,7 +7,9 @@
             @if(auth()->user()->is_admin)
                 <li><a href="{{ url('/admin/cars') }}" class="nav-link text-white">Manage Cars</a></li>
             @endif
-            {{-- 🔹 Logout link --}}
+            {{--Logout link --}}
+            <li>&nbsp;</li>
+            <li>&nbsp;</li>
             <li>
                 <a href="{{ url('/logout') }}" 
                 class="nav-link text-white"
