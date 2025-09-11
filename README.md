@@ -65,10 +65,9 @@ Email: admin@example.com
 Password: password
 ```
 
-### Regular user
-
+### Regular User
 Register via the Register page
----
+
 
 ## 👥 Roles
 
