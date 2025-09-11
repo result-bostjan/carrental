@@ -13,7 +13,7 @@ class BookingController extends Controller
      * Display a listing of the bookings.
      */
     public function index() {
-        $bookings = Booking::with('car') // eager load, da se ne dela N+1 query
+        $bookings = Booking::with('car') 
         ->where('user_id', auth()->id())
         ->orderBy('start_date', 'asc')
         ->get();
