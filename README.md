@@ -38,8 +38,8 @@ DB_PASSWORD=your_password
 php artisan migrate --seed
 ```
 
-This will be created all tables and seed an admin user
-you can also see data and structure into DB/carrental.sql
+This will be created all tables and seed an admin user.<br>
+You can also see data and structure into DB/carrental.sql
 
 ### 5. Start the Server
 
